@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+<?php
+$servername = "localhost"; // Replace with your server name
+$username = 'Xhaka'; // Replace with your MySQL username
+$password = '123456'; // Replace with your MySQL password
+$dbname = 'wheelsnation'; // Replace with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die('Connection failed: ' . $conn->connect_error);
+}
+
+
+// Fetch records from the "cars" table
+$sql = "SELECT * FROM event ";
+$result = $conn->query($sql);
+
+
+?>
+
 <head>
     <title>WheelsNation</title>
     <meta charset="utf-8">
@@ -77,18 +100,44 @@
                 <div class="col-lg-12">
                     <ul>
                         <li>
+                        <?php foreach ($result as $item) : ?>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
-                                        <h4>Urban Retro Festival</h4>
-                                        <span>Car & Motorbike Clubs Edition</span>
+                                        <h4><?php echo $item['event_title'];?></h4>
+                                        <!-- <span>Car & Motorbike Clubs Edition</span> -->
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="time"><span><i class="fa fa-clock-o"></i> Sep 16, 2021<br>18:00 to 22:00</span></div>
+                                    <div class="time"><span><i class="fa fa-clock-o"></i>
+                                    <?php 
+                                    // Assuming $item['date'] contains a valid date string
+                                    $dateString = $item['date'];
+                                    // Convert the date string to a DateTime object
+                                    $date = new DateTime($dateString);
+                                    // Format the date as 'M-d-Y' (e.g., Sept-05-2023)
+                                    $formattedDate = $date->format("M-d-l");
+                                    // Output the formatted date
+                                    echo $formattedDate;
+                                                                            
+                                    ?>
+                                    <br>
+                                    <?php
+                                    // Assuming $item['start_time'] contains a valid time string
+                                    $start_time = $item['start_time'];
+                                    $end_time = $item['finish_time'];
+
+                                    // Convert the time string to a timestamp and then format it
+                                    $formatted_start_time = date("g:i A", strtotime($start_time));
+                                    $formatted_end_time = date("g:i A", strtotime($end_time));
+
+                                    // Output the formatted start time
+                                    echo $formatted_start_time . '-' . $formatted_end_time ;
+                                    ?>
+                                </span></div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="place"><span><i class="fa fa-map-marker"></i>Space X, <br>Inside Sredmak Gardens</span></div>
+                                    <div class="place"><span><i class="fa fa-map-marker"></i><?php echo $item['event_venue'];?></span></div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="main-dark-button">
@@ -96,8 +145,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php endforeach; ?>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -201,7 +251,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="col-lg-12">
@@ -210,7 +260,7 @@
 
                             <li><a href="nexteventpage.html">Prev</a></li>
 
-                           <!-- <div class="col-lg-12">
+                           <div class="col-lg-12">
                                 <div class="pagination">
                                     <ul>
                                         <li class="active"><span>1</span></li>
@@ -221,7 +271,7 @@
                                     </ul>
                                 </div>
                             </div> 
-                            -->
+                           
 
                         </ul>
                     </div>
