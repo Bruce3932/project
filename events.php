@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+$servername = "localhost"; // Replace with your server name
+$username = 'Xhaka'; // Replace with your MySQL username
+$password = '123456'; // Replace with your MySQL password
+$dbname = 'wheelsnation'; // Replace with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die('Connection failed: ' . $conn->connect_error);
+}
+
+
+// Fetch records from the "cars" table
+$sql = "SELECT * FROM event ";
+$result = $conn->query($sql);
+
+
+?>
 <head>
     <title>WheelsNation</title>
     <meta charset="utf-8">
@@ -41,13 +62,16 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-                    <li class="nav-item"><a href="car.html" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                    <li class="nav-item">
+                        <a href="events.php" class="nav-link">Events</a>
+                    </li>
+                    <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+                    <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
+
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="logout.php" class="nav-link">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
@@ -140,21 +164,22 @@
                                         <div class="col-lg-9">
                                             <div class="row">
                                                 <div class="col-lg-12">
+                                                <?php foreach ($result as $item) : ?>
                                                     <div class="event-item">
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <div class="left-content">
-                                                                    <h4>Masingatt 2023</h4>
-                                                                    <p>Cars and Curry is a FREE weekly meet, every Friday 4pm to 8pm, only at The Motorist.
+                                                                    <h4><?php echo $item['event_title'];?></h4>
+                                                                    <p><?php echo $item['description'];?>
 
-                                                                        Cars and Curry brings a whole new meaning to a curry run. All vehicles are welcome to come and we can start the weekend off celebrating some magnificent cars. This is our newest meet and it will be taking place every Friday.
+                                                
                                                                         
                                                                     </p><div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="thumb">
-                                                                    <img src="images/Wheels n Thrills event.jpg" alt="">
+                                                                    <img src="./database/event-images/<?php echo $item['image'];?>" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -162,23 +187,46 @@
                                                                     <ul>
                                                                         <li>
                                                                             <i class="fa fa-clock-o "></i>
-                                                                            <h6>Sep 24 Friday<br>11:20 AM - 10:20 PM</h6>
+                                                                            <h6><?php 
+                                                                            // Assuming $item['date'] contains a valid date string
+                                                                            $dateString = $item['date'];
+                                                                            // Convert the date string to a DateTime object
+                                                                            $date = new DateTime($dateString);
+                                                                            // Format the date as 'M-d-Y' (e.g., Sept-05-2023)
+                                                                            $formattedDate = $date->format("M-d-l");
+                                                                            // Output the formatted date
+                                                                            echo $formattedDate;
+                                                                            
+                                                                            ?>
+                                                                            <br><?php
+                                                                            // Assuming $item['start_time'] contains a valid time string
+                                                                            $start_time = $item['start_time'];
+                                                                            $end_time = $item['finish_time'];
+
+                                                                            // Convert the time string to a timestamp and then format it
+                                                                            $formatted_start_time = date("g:i A", strtotime($start_time));
+                                                                            $formatted_end_time = date("g:i A", strtotime($end_time));
+
+                                                                            // Output the formatted start time
+                                                                            echo $formatted_start_time . '-' . $formatted_end_time ;
+                                                                            ?></h6>
                                                                         </li>
                                                                         <li>
                                                                             <i class="fa fa-map-marker"></i>
-                                                                            <span>Copacabana Beach, Two Rivers Mall</span>
+                                                                            <span><?php echo $item['event_venue'];?></span>
                                                                         </li>
-                                                                        <li>
+                                                                        <!-- <li>
                                                                             <i class="fa fa-users"></i>
                                                                             <span>540 Total Guests Attending</span>
-                                                                        </li>
+                                                                        </li> -->
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <?php endforeach; ?>
                                                 </div>
-                                                <div class="col-lg-12">
+                                                <!-- <div class="col-lg-12">
                                                     <div class="event-item">
                                                         <div class="row">
                                                             <div class="col-lg-4">
@@ -295,7 +343,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="col-lg-12">
                                                     <div class="pagination">
