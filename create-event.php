@@ -11,6 +11,8 @@ if (isset($_POST['upload'])) {
     $venue = $_POST['Venue'];
     $description = $_POST['description'];
     $date = $_POST['Date'];
+    $start =$_POST['start_time'];
+    $end = $_POST['finish_time'];
 
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
@@ -20,9 +22,9 @@ if (isset($_POST['upload'])) {
         $db = mysqli_connect("localhost", "root", "", "wheelsnation");
         if ($db) {
             // Use prepared statements to prevent SQL injection
-            $sql = "INSERT INTO event (event_title, event_venue, image, date, description) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO event (event_title, event_venue, image, start_time, finish_time, date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($db, $sql);
-            mysqli_stmt_bind_param($stmt, "sssss", $title, $venue, $filename, $date, $description);
+            mysqli_stmt_bind_param($stmt, "sssssss", $title, $venue, $filename,$start,$end, $date, $description);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo '<script>alert("Uploaded successfully");</script>';
@@ -87,10 +89,18 @@ if (isset($_POST['upload'])) {
             <div class="form-group">
                 <input type="date" class="form-control" placeholder="Event Date" id="Date" name="Date">
             </div>
+
+            <div class="form-group">
+            <input type="time" placeholder="Time" id="start_time" name="start_time">
+            </div>
+
+            <div class="form-group">
+            <input type="time" placeholder="Time" id="finish_time" name="finish_time">
+            </div>
           
             <div class="form-group">
 				      <input class="form-control" type="file" name="uploadfile" value="" />
-			      </div>
+			</div>
             
             <div class="form-group">
                 <textarea name="description" cols="30" rows="7" class="form-control" placeholder="Description" id="description" ></textarea>
