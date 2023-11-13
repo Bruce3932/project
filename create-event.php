@@ -9,6 +9,7 @@ $msg = "";
 if (isset($_POST['upload'])) {
     $title = $_POST['Title'];
     $venue = $_POST['Venue'];
+    $category = $_POST['Category'];
     $description = $_POST['description'];
     $date = $_POST['Date'];
     $start =$_POST['start_time'];
@@ -22,9 +23,9 @@ if (isset($_POST['upload'])) {
         $db = mysqli_connect("localhost", "root", "", "wheelsnation");
         if ($db) {
             // Use prepared statements to prevent SQL injection
-            $sql = "INSERT INTO event (event_title, event_venue, image, start_time, finish_time, date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO event (event_title, event_venue,event_category, image, start_time, finish_time, date, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($db, $sql);
-            mysqli_stmt_bind_param($stmt, "sssssss", $title, $venue, $filename,$start,$end, $date, $description);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $title, $venue,$category, $filename,$start,$end, $date, $description);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo '<script>alert("Uploaded successfully");</script>';
@@ -85,6 +86,9 @@ if (isset($_POST['upload'])) {
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Event  Venue" id="Venue" name="Venue">
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Event  Category" id="Category" name="Category">
+            </div>
 
             <div class="form-group">
                 <input type="date" class="form-control" placeholder="Event Date" id="Date" name="Date">
@@ -108,7 +112,7 @@ if (isset($_POST['upload'])) {
             <div class="form-group">
                 <input name="upload" type="submit" value="CREATE" class="btn btn-primary py-3 px-5" >
             </div>
-            <div><a href="car.php">BACK</a></div>
+            <div><a href="events.php">BACK</a></div>
         </form>
 
     </div>
