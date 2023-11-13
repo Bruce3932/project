@@ -81,15 +81,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="main.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item">
-                        <a href="events.html" class="nav-link">Events</a>
+                        <a href="events.php" class="nav-link">Events</a>
                     </li>
                     <!-- <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li> -->
                     <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="logout.php" class="nav-link">LOG OUT</a></li>
+
                 </ul>
             </div>
         </div>
