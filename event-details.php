@@ -63,13 +63,13 @@ $result = $conn->query($sql);
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="main.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-                    <li class="nav-item"><a href="car.html" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                    <li class="nav-item"><a href="events.php" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+                    <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="logout.php" class="nav-link">LOG OUT</a></li>
+                    <!-- <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li> -->
                 </ul>
             </div>
         </div>
@@ -99,13 +99,13 @@ $result = $conn->query($sql);
                 </div>
                 <div class="col-lg-12">
                     <ul>
-                        <li>
                         <?php foreach ($result as $item) : ?>
-                            <div class="row">
+                        <li>
+                            <div class="row ">
                                 <div class="col-lg-3">
                                     <div class="title">
                                         <h4><?php echo $item['event_title'];?></h4>
-                                        <!-- <span>Car & Motorbike Clubs Edition</span> -->
+                                        <span><?php echo $item['event_category'];?></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -145,9 +145,9 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                            <?php endforeach; ?>
-                        </li>
-                        <!-- <li>
+                        </li><br>
+                        <?php endforeach; ?>
+                         <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -167,8 +167,8 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -188,8 +188,8 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -209,8 +209,8 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -230,8 +230,8 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="title">
@@ -251,10 +251,10 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
-                        </li> -->
+                        </li>  -->
                     </ul>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="pagination">
                         <ul>
 
@@ -275,7 +275,7 @@ $result = $conn->query($sql);
 
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     
