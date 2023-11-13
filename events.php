@@ -62,7 +62,7 @@ $result = $conn->query($sql);
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="main.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item">
                         <a href="events.php" class="nav-link">Events</a>
@@ -85,6 +85,8 @@ $result = $conn->query($sql);
                 <div class="col-md-9 ftco-animate pb-5">
                     <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Events <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-3 bread">Upcoming Events</h1>
+                    <p><a href="create-event.php" class="btn btn-primary">Post Event </a></p>
+
                 </div>
             </div>
         </div>
@@ -127,9 +129,10 @@ $result = $conn->query($sql);
                                                             <h4>Latest News:</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12">
+                                                    <!-- <div class="col-lg-12">
                                                         <div class="month">
                                                             <h6>Month</h6>
+                                                           
                                                             <ul>
                                                                 <li><a href="#">September</a></li>
                                                                 <li><a href="#">October</a></li>
@@ -137,25 +140,55 @@ $result = $conn->query($sql);
                                                                 <li><a href="#">December</a></li>
                                                             </ul>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
+                                                   
                                                     <div class="col-lg-12">
-                                                        <div class="category">
-                                                            <h6>Event Category</h6>
+                                                        <div class="venues">
+                                                            <h6> Event Category</h6>
                                                             <ul>
-                                                                <li><a href="#">Sports Cars</a></li>
-                                                                <li><a href="#">Classic Cars</a></li>
-                                                                <li><a href="#">Off-Road Vehicles</a></li>
-                                                            </ul>
+                                                            <?php
+                                                            $displayedCategories = array();
+
+                                                            foreach ($result as $category) :
+                                                            
+                                                             // Check if the venue has already been displayed
+                                                             if (!in_array($category['event_category'], $displayedCategories)) {
+                                                            ?>
+                                                                <li><a href="#"><?php echo $category['event_category'];?></a></li>
+                                                                <!-- <li><a href="#">Two Rivers Mall Athi River</a></li> -->
+                                                                <!-- <li><a href="#">Kiambu</a></li> -->
+                                                                <?php 
+                                                            // Add the venue to the array to mark it as displayed
+                                                            $displayedCategories[] = $category['event_category'];
+                                                        }
+                                                    endforeach; ?>
+                                                    </ul>
                                                         </div>
                                                     </div>
+
+
+
                                                     <div class="col-lg-12">
                                                         <div class="venues">
                                                             <h6>Venues</h6>
                                                             <ul>
-                                                                <li><a href="#">KICC</a></li>
-                                                                <li><a href="#">Two Rivers Mall Athi River</a></li>
-                                                                <li><a href="#">Kiambu</a></li>
-                                                            </ul>
+                                                            <?php
+                                                            $displayedVenues = array();
+
+                                                            foreach ($result as $venue) :
+                                                            
+                                                             // Check if the venue has already been displayed
+                                                             if (!in_array($venue['event_venue'], $displayedVenues)) {
+                                                            ?>
+                                                                <li><a href="#"><?php echo $venue['event_venue'];?></a></li>
+                                                                <!-- <li><a href="#">Two Rivers Mall Athi River</a></li> -->
+                                                                <!-- <li><a href="#">Kiambu</a></li> -->
+                                                                <?php 
+                                                            // Add the venue to the array to mark it as displayed
+                                                            $displayedVenues[] = $venue['event_venue'];
+                                                        }
+                                                    endforeach; ?>
+                                                    </ul>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -163,8 +196,8 @@ $result = $conn->query($sql);
                                         </div>
                                         <div class="col-lg-9">
                                             <div class="row">
-                                                <div class="col-lg-12">
                                                 <?php foreach ($result as $item) : ?>
+                                                <div class="col-lg-12">
                                                     <div class="event-item">
                                                         <div class="row">
                                                             <div class="col-lg-4">
@@ -173,12 +206,12 @@ $result = $conn->query($sql);
                                                                     <p><?php echo $item['description'];?>
 
                                                 
-                                                                        
-                                                                    </p><div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
+                            
+                                                                    </p><div class="main-dark-button"><a href="event-details.php">Discover More</a></div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
-                                                                <div class="thumb">
+                                                                <div class="thumb ">
                                                                     <img src="./database/event-images/<?php echo $item['image'];?>" alt="">
                                                                 </div>
                                                             </div>
@@ -224,137 +257,20 @@ $result = $conn->query($sql);
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <?php endforeach; ?>
                                                 </div>
-                                                <!-- <div class="col-lg-12">
-                                                    <div class="event-item">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="left-content">
-                                                                    <h4>East Africa-Car Care Expo</h4>
-                                                                    <p>Cars and Curry is a FREE weekly meet, every Friday 4pm to 8pm, only at The Motorist.
-
-                                                                        Cars and Curry brings a whole new meaning to a curry run. All vehicles are welcome to come and we can start the weekend off celebrating some magnificent cars. This is our newest meet and it will be taking place every Friday.
-                                                                        
-                                                                    </p>
-                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="thumb">
-                                                                    <img src="images/Urban Retro event2.jpg" alt="" >
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="right-content">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <i class="fa fa-clock-o"></i>
-                                                                            <h6>Oct 22 Saturday<br>10:00 AM - 09:00 PM</h6>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-map-marker"></i>
-                                                                            <span>Copacabana Beach, Two Rivers Mall<</span>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-users"></i>
-                                                                            <span>480 Total Guests Attending</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach; ?>
+                                                
+                                                
                                                 <div class="col-lg-12">
-                                                    <div class="event-item">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="left-content">
-                                                                    <h4>East Africa-Car Care Expo</h4>
-                                                                    <p>Cars and Curry is a FREE weekly meet, every Friday 4pm to 8pm, only at The Motorist.
-
-                                                                        Cars and Curry brings a whole new meaning to a curry run. All vehicles are welcome to come and we can start the weekend off celebrating some magnificent cars. This is our newest meet and it will be taking place every Friday.
-                                                                        
-                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="thumb">
-                                                                    <img src="images/SunsetGtimage.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="right-content">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <i class="fa fa-clock-o"></i>
-                                                                            <h6>Nov 12 Friday<br>11:00 AM - 11:00 PM</h6>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-map-marker"></i>
-                                                                            <span>908Copacabana Beach,Two Rivers Mall<</span>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-users"></i>
-                                                                            <span>920 Total Guests Attending</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="event-item">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="left-content">
-                                                                    <h4>East Africa-Car Care Expo</h4>
-                                                                    <p>Cars and Curry is a FREE weekly meet, every Friday 4pm to 8pm, only at The Motorist.
-
-                                                                        Cars and Curry brings a whole new meaning to a curry run. All vehicles are welcome to come and we can start the weekend off celebrating some magnificent cars. This is our newest meet and it will be taking place every Friday.
-                                                                        </p>
-                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="thumb">
-                                                                    <img src="images/urban retro event.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="right-content">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <i class="fa fa-clock-o"></i>
-                                                                            <h6>Nov 18 Sunday<br>08:00 AM - 09:00 PM</h6>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-map-marker"></i>
-                                                                            <span>Copacabana Beach, Two Rivers Mall</span>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i class="fa fa-users"></i>
-                                                                            <span>785 Total Guests Attending</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-
-                                                <div class="col-lg-12">
-                                                    <div class="pagination">
+                                                    <!-- <div class="pagination">
                                                         <ul>
                                                             <li class="active"><span>1</span></li>
                                                             <li><a href="nexteventpage.html">2</a></li>
-
+                                                            
                                                             <li><a href="nexteventpage.html">Next</a></li>
                                                             
                                                         </ul>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
