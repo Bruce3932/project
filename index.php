@@ -125,11 +125,11 @@
 
                                     <div style="margin-top: 30px;">
                                         <div class="main-dark-button text-center">
-                                            <a href="events.html">Explore More Events</a>
+                                            <a href="events.php">Explore More Events</a>
                                         </div>
                                     </div>
                                     
-                                    
+                                    .
                                 </div>
                                 
                             </div>
@@ -163,7 +163,7 @@
                                         <span class="cat">Vintage Cars</span>
                                         <p class="price ml-auto">Date: October 20, 2023</p>
                                     </div>
-                                    </p><div class="main-dark-button"><a href="events.html">Discover More</a></div>
+                                    </p><div class="main-dark-button"><a href="events.php">Discover More</a></div>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                                         <p class="price ml-auto">Date: October 20, 2023</p>
                                     </div>
                                     <!--<p class="d-flex mb-0 d-block"><a href="events.html" class="btn btn-primary py-2 mr-1">Discover More</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>-->
-                                    </p><div class="main-dark-button"><a href="events.html">Discover More</a></div>
+                                    </p><div class="main-dark-button"><a href="events.php">Discover More</a></div>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                                         <span class="cat">Orleans Hotel</span>
                                         <p class="price ml-auto">Date: October 20, 2023</p>
                                     </div>
-                                    </p><div class="main-dark-button"><a href="events.html">Discover More</a></div>                                </div>
+                                    </p><div class="main-dark-button"><a href="events.php">Discover More</a></div>                                </div>
                             </div>
                         </div>
 
@@ -209,7 +209,7 @@
                                         <span class="cat">Two Rivers Mall</span>
                                         <p class="price ml-auto">Date: October 20, 2023</p>
                                     </div>
-                                    </p><div class="main-dark-button"><a href="events.html">Discover More</a></div>                                </div>
+                                    </p><div class="main-dark-button"><a href="events.php">Discover More</a></div>                                </div>
                             </div>
                         </div>
                     </div>
@@ -340,7 +340,7 @@
                                 <div><a href="# " class="meta-chat "><span class="icon-chat "></span> 3</a></div>
                             </div>
                             <h3 class="heading mt-2 "><a href="# ">Top Car Events of the Year</a></h3>
-                            <p><a href="# " class="btn btn-primary ">Read more</a></p>
+                            <p><a href="blog.php" class="btn btn-primary ">Read more</a></p>
                         </div>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
                                 <div><a href="# " class="meta-chat "><span class="icon-chat "></span> 3</a></div>
                             </div>
                             <h3 class="heading mt-2"><a href="#">How to Make the Most of Car Shows</a></h3>
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
+                            <p><a href="blog.php" class="btn btn-primary">Read more</a></p>
                         </div>
                     </div>
                 </div>
@@ -370,7 +370,7 @@
                                 <div><a href="# " class="meta-chat "><span class="icon-chat "></span> 3</a></div>
                             </div>
                             <h3 class="heading mt-2"><a href="#">Revving Up for the Upcoming Auto Expo</a></h3>
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
+                            <p><a href="blog.php" class="btn btn-primary">Read more</a></p>
                         </div>
                     </div>
                 </div>
