@@ -13,7 +13,7 @@ session_start();
     $servername = "localhost"; // Replace with your server name
     $username = 'Xhaka'; // Replace with your MySQL username
     $password = '123456'; // Replace with your MySQL password
-    $dbname = 'test'; // Replace with your database name
+    $dbname = 'wheelsnation'; // Replace with your database name
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
